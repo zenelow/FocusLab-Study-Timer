@@ -8,7 +8,10 @@ const MODES = {
     long: 15 * 60
 };
 
+const SESSIONS_UNTIL_LONG_BREAK = 5;
+
 let currentMode = 'focus';
+let completedSessions = 0;
 
 // Initialize Timer
 const timer = new Timer(
@@ -17,8 +20,7 @@ const timer = new Timer(
         UI.updateTimerDisplay(remainingTime);
     },
     () => {
-        UI.updateControlsState(false);
-        alert('Time is up!');
+        handleTimerFinish();
     }
 );
 
@@ -47,11 +49,32 @@ const handleModeChange = (mode) => {
     UI.updateControlsState(false);
 };
 
+const handleTimerFinish = () => {
+    UI.updateControlsState(false);
+    
+    if (currentMode === 'focus') {
+        completedSessions++;
+        UI.updateSessionCounter(completedSessions, SESSIONS_UNTIL_LONG_BREAK);
+        
+        if (completedSessions % SESSIONS_UNTIL_LONG_BREAK === 0) {
+            handleModeChange('long');
+        } else {
+            handleModeChange('short');
+        }
+    } else {
+        // After any break, switch back to focus
+        handleModeChange('focus');
+    }
+    
+    alert('Time is up!');
+};
+
 // Initialize App
 function init() {
     // Set initial display
     UI.updateTimerDisplay(MODES[currentMode]);
     UI.setActiveMode(currentMode);
+    UI.updateSessionCounter(completedSessions, SESSIONS_UNTIL_LONG_BREAK);
     UI.updateControlsState(false);
 
     // Bind events

@@ -79,3 +79,12 @@ export function setActiveMode(activeMode) {
         }
     });
 }
+
+/**
+ * Updates the session counter display.
+ * @param {number} count 
+ * @param {number} total 
+ */
+export function updateSessionCounter(count, total) {
+    elements.sessionCounter.textContent = `Sessions: ${count % total}/${total}`;
+}
