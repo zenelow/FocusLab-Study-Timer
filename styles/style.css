@@ -71,9 +71,10 @@ h1 {
 }
 
 .mode-btn.active {
-    background-color: var(--surface-color);
-    color: var(--accent-color);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    background-color: var(--accent-color);
+    color: #000000;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(187, 134, 252, 0.3);
 }
 
 .session-counter {

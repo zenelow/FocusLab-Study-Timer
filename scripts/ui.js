@@ -8,6 +8,7 @@ const elements = {
     pauseButton: document.getElementById('pause'),
     resetButton: document.getElementById('reset'),
     modeButtons: document.querySelectorAll('.mode-btn'),
+    sessionCounter: document.getElementById('session-counter'),
 };
 
 /**
