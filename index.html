@@ -15,7 +15,13 @@
             <button id="mode-long" class="mode-btn" data-mode="long">Long Break</button>
         </div>
         <div id="session-counter" class="session-counter">Session 1 / 4</div>
-        <div id="timer" class="timer-display">00:25:00</div>
+        <div class="timer-container">
+            <svg class="progress-ring" width="400" height="400">
+                <circle class="progress-ring__circle-bg" stroke="rgba(255, 255, 255, 0.05)" stroke-width="8" fill="transparent" r="190" cx="200" cy="200"/>
+                <circle id="progress-ring-circle" class="progress-ring__circle" stroke="var(--accent-color)" stroke-width="8" fill="transparent" r="190" cx="200" cy="200"/>
+            </svg>
+            <div id="timer" class="timer-display">00:25:00</div>
+        </div>
         <div class="controls">
             <button id="start" class="btn btn-start">Start</button>
             <button id="pause" class="btn btn-pause" disabled>Pause</button>

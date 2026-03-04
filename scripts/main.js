@@ -17,7 +17,7 @@ let completedSessions = 0;
 const timer = new Timer(
     MODES[currentMode],
     (remainingTime) => {
-        UI.updateTimerDisplay(remainingTime);
+        UI.updateTimerDisplay(remainingTime, MODES[currentMode]);
     },
     () => {
         handleTimerFinish();
@@ -76,7 +76,7 @@ const handleTimerFinish = () => {
 // Initialize App
 function init() {
     // Set initial display
-    UI.updateTimerDisplay(MODES[currentMode]);
+    UI.updateTimerDisplay(MODES[currentMode], MODES[currentMode]);
     UI.setActiveMode(currentMode);
     UI.updateSessionCounter(completedSessions, SESSIONS_UNTIL_LONG_BREAK);
     UI.updateControlsState(false);

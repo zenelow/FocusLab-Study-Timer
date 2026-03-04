@@ -80,18 +80,36 @@ h1 {
 .session-counter {
     font-size: 0.9rem;
     color: var(--text-secondary);
-    margin: 1rem 0 -1rem;
+    margin: 1rem 0 2rem;
     font-weight: 500;
 }
 
+.timer-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem 0 4rem;
+}
+
+.progress-ring {
+    position: absolute;
+    transform: rotate(-90deg);
+}
+
+.progress-ring__circle {
+    transition: stroke-dashoffset 1s linear;
+    stroke-linecap: round;
+}
+
 .timer-display {
-    font-size: 8rem;
+    font-size: 6rem;
     font-weight: 700;
     color: var(--text-primary);
     font-variant-numeric: tabular-nums;
     letter-spacing: -0.02em;
-    line-height: 1.1;
-    margin: 1rem 0 3rem;
+    line-height: 1;
+    z-index: 1;
     text-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
 

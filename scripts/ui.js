@@ -12,7 +12,17 @@ const elements = {
     modalOverlay: document.getElementById('modal-overlay'),
     modalMessage: document.getElementById('modal-message'),
     modalContinue: document.getElementById('modal-continue'),
+    progressCircle: document.getElementById('progress-ring-circle'),
 };
+
+const CIRCLE_RADIUS = 190;
+const CIRCLE_CIRCUMFERENCE = 2 * Math.PI * CIRCLE_RADIUS;
+
+// Initialize circle
+if (elements.progressCircle) {
+    elements.progressCircle.style.strokeDasharray = `${CIRCLE_CIRCUMFERENCE} ${CIRCLE_CIRCUMFERENCE}`;
+    elements.progressCircle.style.strokeDashoffset = CIRCLE_CIRCUMFERENCE;
+}
 
 /**
  * Formats seconds into HH:MM:SS string.
@@ -32,11 +42,18 @@ function formatTime(seconds) {
 }
 
 /**
- * Updates the timer display with the formatted time.
+ * Updates the timer display and progress ring.
  * @param {number} seconds 
+ * @param {number} totalSeconds 
  */
-export function updateTimerDisplay(seconds) {
+export function updateTimerDisplay(seconds, totalSeconds) {
     elements.timerDisplay.textContent = formatTime(seconds);
+    
+    if (elements.progressCircle && totalSeconds) {
+        const percent = seconds / totalSeconds;
+        const offset = CIRCLE_CIRCUMFERENCE * percent;
+        elements.progressCircle.style.strokeDashoffset = offset;
+    }
 }
 
 /**
